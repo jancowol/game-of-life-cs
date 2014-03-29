@@ -38,5 +38,17 @@ namespace gol
 
 			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
 		}
+
+		[Test]
+		public void GivenAUniverseWithOneLiveCellWithOneLiveNeighbour_WhenEvolved_TheCellDies()
+		{
+			var liveCell = new Cell();
+			var liveNeighbour = new Cell();
+			var universeWithLiveCells = new Universe(new[] {liveCell, liveNeighbour,});
+			var game = new Game();
+			var evolvedUniverse = game.Evolve(universeWithLiveCells);
+
+			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
+		}
 	}
 }
