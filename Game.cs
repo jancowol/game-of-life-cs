@@ -10,7 +10,8 @@ namespace gol
 
 			foreach (var liveCell in universe.LiveCells)
 			{
-				if (liveCell.LiveNeighbourCount(universe.LiveCells) == 2)
+				var liveNeighbourCount = liveCell.LiveNeighbourCount(universe.LiveCells);
+				if (liveNeighbourCount == 2 || liveNeighbourCount == 3)
 				{
 					evolvedCells.Add(liveCell);
 				}
