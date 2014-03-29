@@ -73,9 +73,14 @@ namespace gol
 		}
 
 		[Test]
-		public void GivenALiveCellWithFourLiveNeighbours_WhenEvolved_TheCellDies()
+		[TestCase(4)]
+		[TestCase(5)]
+		[TestCase(6)]
+		[TestCase(7)]
+		[TestCase(8)]
+		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount: 4);
+			var liveCell = new FakeCell(liveNeighbourCount);
 			var universeWithLiveCells = new Universe(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
