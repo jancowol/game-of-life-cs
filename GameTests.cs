@@ -16,14 +16,16 @@ namespace gol
 		}
 
 		[Test]
-		public void GivenAUniverseWithOneLiveCell_WhenEvolved_TheUniverseContainsNoLiveCells()
+		[TestCase(0)]
+		[TestCase(1)]
+		public void GivenAUniverseWithOneLiveCellAndLessThanTwoLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount: 0);
-			var universeWithOneLiveCell = new Universe(new[] { liveCell });
+			var liveCell = new FakeCell(liveNeighbourCount);
+			var initialUniverse = new Universe(new[] { liveCell });
 
-			var evolvedUniverse = EvolveUniverse(universeWithOneLiveCell);
+			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
-			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
+			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
 		}
 
 		[Test]
@@ -46,30 +48,6 @@ namespace gol
 			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
 
 			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
-		}
-
-		[Test]
-		public void GivenAUniverseWithOneLiveCellWithOneLiveNeighbour_WhenEvolved_TheCellDies()
-		{
-			var liveCell = new FakeCell(liveNeighbourCount: 0);
-			var universeWithLiveCells = new Universe(new[] { liveCell });
-
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
-
-			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
-		}
-
-		[Test]
-		public void GivenAUniverseWithThreeLiveCellsWhichAreNotNeighbours_WhenEvolved_AllThreeDies()
-		{
-			var liveCell1 = new FakeCell(liveNeighbourCount: 0);
-			var liveCell2 = new FakeCell(liveNeighbourCount: 0);
-			var liveCell3 = new FakeCell(liveNeighbourCount: 0);
-			var universeWithLiveCells = new Universe(new[] { liveCell1, liveCell2, liveCell3 });
-
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
-
-			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 		}
 
 		[Test]
