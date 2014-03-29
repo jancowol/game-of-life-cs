@@ -44,25 +44,25 @@ namespace gol
 		{
 			var liveCell = new Cell();
 			var liveNeighbour = new Cell();
-			var universeWithLiveCells = new Universe(new[] {liveCell, liveNeighbour,});
+			var universeWithLiveCells = new Universe(new[] { liveCell, liveNeighbour, });
 
 			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
 
 			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
 		}
 
-		[Test]
-		public void GivenAUniverseWithThreeLiveCellsWhichAreNotNeighbours_WhenEvolved_AllThreeDies()
-		{
-			var liveCell1 = new Cell();
-			var liveCell2 = new Cell();
-			var liveCell3 = new Cell();
-			var universeWithLiveCells = new Universe(new[] {liveCell1, liveCell2, liveCell3});
+		//[Test]
+		//public void GivenAUniverseWithThreeLiveCellsWhichAreNotNeighbours_WhenEvolved_AllThreeDies()
+		//{
+		//	var liveCell1 = new Cell();
+		//	var liveCell2 = new Cell();
+		//	var liveCell3 = new Cell();
+		//	var universeWithLiveCells = new Universe(new[] {liveCell1, liveCell2, liveCell3});
 
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
+		//	var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
 
-			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
-		}
+		//	Assert.That(evolvedUniverse.LiveCells, Is.Empty);
+		//}
 
 		private static Universe EvolveUniverse(Universe initialUniverse)
 		{

@@ -4,13 +4,13 @@ namespace gol
 {
 	public class Universe
 	{
-		public IEnumerable<Cell> LiveCells { get; private set; }
+		public IEnumerable<ICell> LiveCells { get; private set; }
 
 		public Universe() : this(new Cell[0])
 		{
 		}
 
-		public Universe(IEnumerable<Cell> liveCells)
+		public Universe(IEnumerable<ICell> liveCells)
 		{
 			LiveCells = liveCells;
 		}

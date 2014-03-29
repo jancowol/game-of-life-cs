@@ -1,6 +1,10 @@
 ﻿namespace gol
 {
-	public class Cell
+	public interface ICell
+	{
+	}
+
+	public class Cell : ICell
 	{
 	}
 }
