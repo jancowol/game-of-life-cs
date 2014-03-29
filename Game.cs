@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace gol
 {
@@ -6,35 +7,28 @@ namespace gol
 	{
 		public FakeUniverse Evolve(FakeUniverse universe)
 		{
-			var evolvedCells = new List<ICell>();
+			var liveCells = new List<ICell>();
 
-			evolvedCells.AddRange(CellsWithTwoOrThreeLiveNeighbours(universe));
-			evolvedCells.AddRange(DeadCellsToMakeAlive(universe));
+			liveCells.AddRange(LiveCellsWithTwoOrThreeLiveNeighbours(universe));
+			liveCells.AddRange(DeadCellsWithThreeLiveNeighbours(universe));
 
-			return new FakeUniverse(evolvedCells);
+			return new FakeUniverse(liveCells);
 		}
 
-		private static IEnumerable<ICell> DeadCellsToMakeAlive(IUniverse universe)
+		private static IEnumerable<ICell> DeadCellsWithThreeLiveNeighbours(IUniverse universe)
 		{
-			foreach (var deadCell in universe.DeadCells)
-			{
-				if (deadCell.LiveNeighbourCount(universe.LiveCells) == 3)
-				{
-					yield return deadCell;
-				}
-			}
+			return universe.DeadCells
+				.Where(deadCell => deadCell.LiveNeighbourCount(universe.LiveCells) == 3);
 		}
 
-		private static IEnumerable<ICell> CellsWithTwoOrThreeLiveNeighbours(IUniverse universe)
+		private static IEnumerable<ICell> LiveCellsWithTwoOrThreeLiveNeighbours(IUniverse universe)
 		{
-			foreach (var liveCell in universe.LiveCells)
-			{
-				var liveNeighbourCount = liveCell.LiveNeighbourCount(universe.LiveCells);
-				if (liveNeighbourCount == 2 || liveNeighbourCount == 3)
-				{
-					yield return liveCell;
-				}
-			}
+			return universe.LiveCells
+				.Where(liveCell =>
+					{
+						var liveNeighbourCount = liveCell.LiveNeighbourCount(universe.LiveCells);
+						return liveNeighbourCount == 2 || liveNeighbourCount == 3;
+					});
 		}
 	}
 }
