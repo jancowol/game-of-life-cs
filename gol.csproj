@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cell.cs" />
+    <Compile Include="CellTests.cs" />
+    <Compile Include="ExamplePatternTests.cs" />
     <Compile Include="FakeCell.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameTests.cs" />
