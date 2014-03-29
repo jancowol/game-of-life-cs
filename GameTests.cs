@@ -4,11 +4,11 @@
 public class GameTests
 {
 	[Test]
-	public void GivenAUniverseWithNoLivingCells_WhenEvolved_TheUniverseContainsNoLivingCells()
+	public void GivenAUniverseWithNoLiveCells_WhenEvolved_TheUniverseContainsNoLiveCells()
 	{
-		var emptyUniverse = new Universe();
+		var universeWithNoLiveCells = new Universe();
 		var game = new Game();
-		var evolvedUniverse = game.Evolve(emptyUniverse);
+		var evolvedUniverse = game.Evolve(universeWithNoLiveCells);
 
 		Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 	}
