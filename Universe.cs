@@ -2,11 +2,11 @@
 {
 	public class Universe
 	{
-		public object[] LiveCells { get; set; }
+		public Cell[] LiveCells { get; set; }
 
 		public Universe(params Cell[] liveCells)
 		{
-			LiveCells = new object[0];
+			LiveCells = liveCells;
 		}
 	}
 }

@@ -4,7 +4,10 @@
 	{
 		public Universe Evolve(Universe universe)
 		{
-			return new Universe();
+			if (universe.LiveCells.Length == 1)
+				return new Universe();
+
+			return new Universe(universe.LiveCells);
 		}
 	}
 }
