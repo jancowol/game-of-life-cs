@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace gol
 {
@@ -7,9 +6,8 @@ namespace gol
 	{
 		public IEnumerable<Cell> LiveCells { get; private set; }
 
-		public Universe()
+		public Universe() : this(new Cell[0])
 		{
-			LiveCells = new Cell[0];
 		}
 
 		public Universe(IEnumerable<Cell> liveCells)
