@@ -78,6 +78,17 @@ namespace gol
 			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 		}
 
+		[Test]
+		public void GivenALiveCellWithFourLiveNeighbours_WhenEvolved_TheCellDies()
+		{
+			var liveCell = new FakeCell(4);
+			var universeWithLiveCells = new Universe(new[] { liveCell });
+
+			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
+
+			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
+		}
+
 		private static Universe EvolveUniverse(Universe initialUniverse)
 		{
 			var game = new Game();
