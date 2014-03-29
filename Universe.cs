@@ -1,9 +1,12 @@
-﻿public class Universe
+﻿namespace gol
 {
-	public object[] LiveCells { get; set; }
-
-	public Universe(params Cell[] liveCells)
+	public class Universe
 	{
-		LiveCells = new object[0];
+		public object[] LiveCells { get; set; }
+
+		public Universe(params Cell[] liveCells)
+		{
+			LiveCells = new object[0];
+		}
 	}
 }

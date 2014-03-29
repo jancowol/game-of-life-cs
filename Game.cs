@@ -1,7 +1,10 @@
-﻿public class Game
+﻿namespace gol
 {
-	public Universe Evolve(Universe universe)
+	public class Game
 	{
-		return new Universe();
+		public Universe Evolve(Universe universe)
+		{
+			return new Universe();
+		}
 	}
 }

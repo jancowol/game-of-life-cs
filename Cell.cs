@@ -1,3 +1,6 @@
-﻿public class Cell
+﻿namespace gol
 {
+	public class Cell
+	{
+	}
 }
