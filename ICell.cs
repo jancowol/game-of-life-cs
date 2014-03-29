@@ -4,7 +4,7 @@ namespace gol
 {
 	public interface ICell
 	{
-		int LiveNeighbourCount(IEnumerable<ICell> cells);
+		int NumberOfNeighboursIn(IEnumerable<ICell> cells);
 		IEnumerable<ICell> AdjacentCells();
 	}
 }

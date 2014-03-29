@@ -18,7 +18,7 @@ namespace gol
 			_adjacentCells = adjacentCells;
 		}
 
-		public int LiveNeighbourCount(IEnumerable<ICell> cells)
+		public int NumberOfNeighboursIn(IEnumerable<ICell> cells)
 		{
 			return _liveNeighbourCount;
 		}
