@@ -57,12 +57,16 @@ namespace gol
 			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
 		}
 
-		//[Test]
-		//public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
-		//{
-		//	var deadCell = new FakeCell(3);
-		//	var initialUniverse = new FakeUniverse(new ICell[0], new ICell[] {deadCell});
-		//}
+		[Test]
+		public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
+		{
+			var deadCell = new FakeCell(liveNeighbourCount: 3);
+			var initialUniverse = new FakeUniverse(new ICell[0], new ICell[] { deadCell });
+
+			var evolvedUniverse = EvolveUniverse(initialUniverse);
+
+			Assert.That(evolvedUniverse.LiveCells, Has.Member(deadCell));
+		}
 
 		private static FakeUniverse EvolveUniverse(FakeUniverse initialUniverse)
 		{

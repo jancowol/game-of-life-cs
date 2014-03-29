@@ -17,6 +17,14 @@ namespace gol
 				}
 			}
 
+			foreach (var deadCell in universe.DeadCells)
+			{
+				if (deadCell.LiveNeighbourCount(universe.LiveCells) == 3)
+				{
+					evolvedCells.Add(deadCell);
+				}
+			}
+
 			return new FakeUniverse(evolvedCells);
 		}
 	}
