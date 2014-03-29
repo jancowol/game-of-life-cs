@@ -1,13 +1,38 @@
-﻿using NUnit.Framework;
-using gol;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 
-[TestFixture]
-public class UniverseTests
+namespace gol
 {
-	[Test]
-	public void NewUniverseDoesNotContainAnyLiveCells()
+	[TestFixture]
+	public class UniverseTests
 	{
-		var universe = new FakeUniverse();
-		Assert.That(universe.LiveCells, Is.Empty);
+		[Test]
+		public void NewUniverseDoesNotContainAnyLiveCells()
+		{
+			var universe = new Universe();
+			Assert.That(universe.LiveCells, Is.Empty);
+		}
+	}
+
+	public class Universe : IUniverse
+	{
+		public IEnumerable<ICell> LiveCells { get; private set; }
+		public IEnumerable<ICell> DeadCells { get; set; }
+
+		public Universe() : this(new ICell[0])
+		{
+		}
+
+		public Universe(IEnumerable<ICell> liveCells)
+		{
+			LiveCells = liveCells;
+			DeadCells = new ICell[0];
+		}
+
+		public Universe(IEnumerable<ICell> liveCells, IEnumerable<ICell> deadCells)
+		{
+			LiveCells = liveCells;
+			DeadCells = deadCells;
+		}
 	}
 }
