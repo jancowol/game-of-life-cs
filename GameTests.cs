@@ -9,8 +9,8 @@ namespace gol
 		public void GivenAUniverseWithNoLiveCells_WhenEvolved_TheUniverseContainsNoLiveCells()
 		{
 			var universeWithNoLiveCells = new Universe();
-			var game = new Game();
-			var evolvedUniverse = game.Evolve(universeWithNoLiveCells);
+
+			var evolvedUniverse = EvolveUniverse(universeWithNoLiveCells);
 
 			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 		}
@@ -20,8 +20,8 @@ namespace gol
 		{
 			var liveCell = new Cell();
 			var universeWithOneLiveCell = new Universe(new[] { liveCell });
-			var game = new Game();
-			var evolvedUniverse = game.Evolve(universeWithOneLiveCell);
+
+			var evolvedUniverse = EvolveUniverse(universeWithOneLiveCell);
 
 			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 		}
@@ -33,8 +33,8 @@ namespace gol
 			var liveCellNeighbour1 = new Cell();
 			var liveCellNeighbour2 = new Cell();
 			var universeWithLiveCells = new Universe(new[] { liveCell, liveCellNeighbour1, liveCellNeighbour2 });
-			var game = new Game();
-			var evolvedUniverse = game.Evolve(universeWithLiveCells);
+
+			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
 
 			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
 		}
@@ -45,10 +45,16 @@ namespace gol
 			var liveCell = new Cell();
 			var liveNeighbour = new Cell();
 			var universeWithLiveCells = new Universe(new[] {liveCell, liveNeighbour,});
-			var game = new Game();
-			var evolvedUniverse = game.Evolve(universeWithLiveCells);
+
+			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
 
 			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
+		}
+
+		private static Universe EvolveUniverse(Universe initialUniverse)
+		{
+			var game = new Game();
+			return game.Evolve(initialUniverse);
 		}
 	}
 }
