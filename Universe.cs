@@ -1,10 +1,18 @@
-﻿namespace gol
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace gol
 {
 	public class Universe
 	{
-		public Cell[] LiveCells { get; set; }
+		public IEnumerable<Cell> LiveCells { get; private set; }
 
-		public Universe(params Cell[] liveCells)
+		public Universe()
+		{
+			LiveCells = new Cell[0];
+		}
+
+		public Universe(IEnumerable<Cell> liveCells)
 		{
 			LiveCells = liveCells;
 		}

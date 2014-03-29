@@ -19,7 +19,7 @@ namespace gol
 		public void GivenAUniverseWithOneLiveCell_WhenEvolved_TheUniverseContainsNoLiveCells()
 		{
 			var liveCell = new Cell();
-			var universeWithOneLiveCell = new Universe(liveCell);
+			var universeWithOneLiveCell = new Universe(new[] { liveCell });
 			var game = new Game();
 			var evolvedUniverse = game.Evolve(universeWithOneLiveCell);
 
@@ -32,7 +32,7 @@ namespace gol
 			var liveCell = new Cell();
 			var liveCellNeighbour1 = new Cell();
 			var liveCellNeighbour2 = new Cell();
-			var universeWithLiveCells = new Universe(liveCell, liveCellNeighbour1, liveCellNeighbour2);
+			var universeWithLiveCells = new Universe(new[] { liveCell, liveCellNeighbour1, liveCellNeighbour2 });
 			var game = new Game();
 			var evolvedUniverse = game.Evolve(universeWithLiveCells);
 
