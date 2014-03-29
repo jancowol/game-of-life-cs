@@ -34,9 +34,9 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var universeWithLiveCells = new Universe(new[] { liveCell });
+			var initialUniverse = new Universe(new[] { liveCell });
 
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
+			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
 			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
 		}
@@ -50,9 +50,9 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var universeWithLiveCells = new Universe(new[] { liveCell });
+			var initialUniverse = new Universe(new[] { liveCell });
 
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
+			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
 			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
 		}
