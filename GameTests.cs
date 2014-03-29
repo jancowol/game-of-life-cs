@@ -13,21 +13,3 @@ public class GameTests
 		Assert.That(evolvedUniverse.LiveCells, Is.Empty);
 	}
 }
-
-public class Game
-{
-	public Universe Evolve(Universe universe)
-	{
-		return new Universe();
-	}
-}
-
-public class Universe
-{
-	public object[] LiveCells { get; set; }
-
-	public Universe()
-	{
-		LiveCells = new object[0];
-	}
-}
