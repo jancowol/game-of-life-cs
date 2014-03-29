@@ -6,7 +6,7 @@ namespace gol
 	{
 		public Universe Evolve(Universe universe)
 		{
-			if (universe.LiveCells.Count() == 1)
+			if (universe.LiveCells.Count() <= 2)
 				return new Universe();
 
 			return new Universe(universe.LiveCells);
