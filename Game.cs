@@ -4,7 +4,7 @@ namespace gol
 {
 	public class Game
 	{
-		public Universe Evolve(Universe universe)
+		public FakeUniverse Evolve(FakeUniverse universe)
 		{
 			var evolvedCells = new List<ICell>();
 
@@ -17,7 +17,7 @@ namespace gol
 				}
 			}
 
-			return new Universe(evolvedCells);
+			return new FakeUniverse(evolvedCells);
 		}
 	}
 }

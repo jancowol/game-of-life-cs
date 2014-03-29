@@ -46,8 +46,9 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameTests.cs" />
     <Compile Include="ICell.cs" />
+    <Compile Include="IUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Universe.cs" />
+    <Compile Include="FakeUniverse.cs" />
     <Compile Include="UniverseTests.cs" />
   </ItemGroup>
   <ItemGroup>

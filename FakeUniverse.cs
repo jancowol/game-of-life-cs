@@ -2,15 +2,15 @@
 
 namespace gol
 {
-	public class Universe
+	public class FakeUniverse : IUniverse
 	{
 		public IEnumerable<ICell> LiveCells { get; private set; }
 
-		public Universe() : this(new ICell[0])
+		public FakeUniverse() : this(new ICell[0])
 		{
 		}
 
-		public Universe(IEnumerable<ICell> liveCells)
+		public FakeUniverse(IEnumerable<ICell> liveCells)
 		{
 			LiveCells = liveCells;
 		}

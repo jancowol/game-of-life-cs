@@ -8,7 +8,7 @@ namespace gol
 		[Test]
 		public void GivenAUniverseWithNoLiveCells_WhenEvolved_TheUniverseContainsNoLiveCells()
 		{
-			var universeWithNoLiveCells = new Universe();
+			var universeWithNoLiveCells = new FakeUniverse();
 
 			var evolvedUniverse = EvolveUniverse(universeWithNoLiveCells);
 
@@ -21,7 +21,7 @@ namespace gol
 		public void GivenAUniverseWithOneLiveCellAndLessThanTwoLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var initialUniverse = new FakeUniverse(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -34,7 +34,7 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var initialUniverse = new FakeUniverse(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -50,14 +50,21 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var initialUniverse = new FakeUniverse(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
 			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
 		}
 
-		private static Universe EvolveUniverse(Universe initialUniverse)
+		//[Test]
+		//public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
+		//{
+		//	var deadCell = new FakeCell(3);
+		//	var initialUniverse = new FakeUniverse(new ICell[0], new ICell[] {deadCell});
+		//}
+
+		private static FakeUniverse EvolveUniverse(FakeUniverse initialUniverse)
 		{
 			var game = new Game();
 			return game.Evolve(initialUniverse);
