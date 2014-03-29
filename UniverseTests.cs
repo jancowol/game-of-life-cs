@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace gol
 {
@@ -15,36 +13,42 @@ namespace gol
 		}
 
 		[Test]
-		// TODO: Possibly rename to DeadCellsAreTheSetOfAllNonAliveCellsNeighbouringAnyLiveCells to clarify what's happening
 		public void DeadCellsAreTheSetOfAllDeadCellsNeighbouringAnyLiveCells()
 		{
 			var adjacentDeadCell1 = new FakeCell();
 			var adjacentDeadCell2 = new FakeCell();
-			var liveCell = new FakeCell(adjacentDeadCell1, adjacentDeadCell2);
-			var universe = new Universe(new[] { liveCell });
+			var liveCell1 = new FakeCell(adjacentDeadCell1, adjacentDeadCell2);
 
-			Assert.That(universe.DeadCells, Is.EquivalentTo(new[] { adjacentDeadCell1, adjacentDeadCell2 }));
+			var adjacentDeadCell3 = new FakeCell();
+			var adjacentDeadCell4 = new FakeCell();
+			var liveCell2 = new FakeCell(adjacentDeadCell3, adjacentDeadCell4);
+
+			var universe = new Universe(new[] { liveCell1, liveCell2 });
+
+			Assert.That(universe.DeadCells,
+				Is.SubsetOf(new[] { adjacentDeadCell1, adjacentDeadCell2, adjacentDeadCell3, adjacentDeadCell4 }));
 		}
-	}
 
-	public class Universe : IUniverse
-	{
-		public Universe()
-			: this(new ICell[0])
+		[Test]
+		public void TheSetOfDeadCellsMustBeUnique()
 		{
+			var adjacentDeadCell = new FakeCell();
+			var liveCell1 = new FakeCell(adjacentDeadCell);
+			var liveCell2 = new FakeCell(adjacentDeadCell);
+			var universe = new Universe(new[] { liveCell1, liveCell2 });
+
+			Assert.That(universe.DeadCells, Is.Unique);
 		}
 
-		public Universe(IEnumerable<ICell> liveCells)
+		[Test]
+		public void TheSetOfDeadCellsCannotContainLiveCells()
 		{
-			LiveCells = liveCells;
+			var liveCell1 = new FakeCell(adjacentCells: new ICell[0]);
+			var liveCell2 = new FakeCell(liveCell1);
+			var universe = new Universe(new[] { liveCell1, liveCell2 });
+
+			Assert.That(universe.DeadCells, Has.No.Member(liveCell1));
+			Assert.That(universe.DeadCells, Has.No.Member(liveCell2));
 		}
-
-		public IEnumerable<ICell> LiveCells { get; private set; }
-
-		public IEnumerable<ICell> DeadCells
-		{
-			get { return LiveCells.SelectMany(liveCell => liveCell.AdjacentCells()); }
-		}
-
 	}
 }

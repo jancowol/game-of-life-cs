@@ -49,6 +49,7 @@
     <Compile Include="IUniverse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FakeUniverse.cs" />
+    <Compile Include="Universe.cs" />
     <Compile Include="UniverseTests.cs" />
   </ItemGroup>
   <ItemGroup>
