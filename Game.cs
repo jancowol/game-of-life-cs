@@ -12,7 +12,7 @@ namespace gol
 			liveCells.AddRange(LiveCellsWithTwoOrThreeLiveNeighbours(universe));
 			liveCells.AddRange(DeadCellsWithThreeLiveNeighbours(universe));
 
-			return new FakeUniverse(liveCells);
+			return new Universe(liveCells);
 		}
 
 		private static IEnumerable<ICell> DeadCellsWithThreeLiveNeighbours(IUniverse universe)
