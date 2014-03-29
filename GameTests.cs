@@ -29,20 +29,11 @@ namespace gol
 		}
 
 		[Test]
-		public void GivenAUniverseWithALiveCellWithTwoLiveNeighbours_WhenEvolved_TheCellIsStillAlive()
+		[TestCase(2)]
+		[TestCase(3)]
+		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount: 2);
-			var universeWithLiveCells = new Universe(new[] { liveCell });
-
-			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
-
-			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
-		}
-
-		[Test]
-		public void GivenAUniverseWithALiveCellWithThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive()
-		{
-			var liveCell = new FakeCell(liveNeighbourCount: 3);
+			var liveCell = new FakeCell(liveNeighbourCount);
 			var universeWithLiveCells = new Universe(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(universeWithLiveCells);
