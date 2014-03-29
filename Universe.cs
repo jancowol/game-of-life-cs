@@ -2,7 +2,7 @@
 {
 	public object[] LiveCells { get; set; }
 
-	public Universe()
+	public Universe(params Cell[] liveCells)
 	{
 		LiveCells = new object[0];
 	}
