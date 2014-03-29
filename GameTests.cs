@@ -68,7 +68,7 @@ namespace gol
 			Assert.That(evolvedUniverse.LiveCells, Has.Member(deadCell));
 		}
 
-		private static FakeUniverse EvolveUniverse(FakeUniverse initialUniverse)
+		private static IUniverse EvolveUniverse(FakeUniverse initialUniverse)
 		{
 			var game = new Game();
 			return game.Evolve(initialUniverse);

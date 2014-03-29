@@ -5,7 +5,7 @@ namespace gol
 {
 	public class Game
 	{
-		public FakeUniverse Evolve(FakeUniverse universe)
+		public IUniverse Evolve(IUniverse universe)
 		{
 			var liveCells = new List<ICell>();
 
