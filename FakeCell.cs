@@ -6,12 +6,7 @@ namespace gol
 	{
 		private readonly int _liveNeighbourCount;
 
-		public FakeCell(params ICell[] neighbourCells)
-		{
-			_liveNeighbourCount = neighbourCells.Length;
-		}
-
-		public FakeCell(int liveNeighbourCount)
+		public FakeCell(int liveNeighbourCount = 0)
 		{
 			_liveNeighbourCount = liveNeighbourCount;
 		}
