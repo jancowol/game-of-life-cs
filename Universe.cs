@@ -6,7 +6,7 @@ namespace gol
 	{
 		public IEnumerable<ICell> LiveCells { get; private set; }
 
-		public Universe() : this(new Cell[0])
+		public Universe() : this(new ICell[0])
 		{
 		}
 

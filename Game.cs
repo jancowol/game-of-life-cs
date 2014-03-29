@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace gol
 {
@@ -6,10 +6,17 @@ namespace gol
 	{
 		public Universe Evolve(Universe universe)
 		{
-			if (universe.LiveCells.Count() <= 2)
-				return new Universe();
+			var evolvedCells = new List<ICell>();
 
-			return new Universe(universe.LiveCells);
+			foreach (var liveCell in universe.LiveCells)
+			{
+				if (liveCell.LiveNeighbourCount(universe.LiveCells) == 2)
+				{
+					evolvedCells.Add(liveCell);
+				}
+			}
+
+			return new Universe(evolvedCells);
 		}
 	}
 }
