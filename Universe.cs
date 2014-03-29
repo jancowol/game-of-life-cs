@@ -5,11 +5,6 @@ namespace gol
 {
 	public class Universe : IUniverse
 	{
-		public Universe()
-			: this(new ICell[0])
-		{
-		}
-
 		public Universe(IEnumerable<ICell> liveCells)
 		{
 			LiveCells = liveCells;

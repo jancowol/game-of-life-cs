@@ -6,13 +6,6 @@ namespace gol
 	public class UniverseTests
 	{
 		[Test]
-		public void NewUniverseDoesNotContainAnyLiveCells()
-		{
-			var universe = new Universe();
-			Assert.That(universe.LiveCells, Is.Empty);
-		}
-
-		[Test]
 		public void DeadCellsAreTheSetOfAllDeadCellsNeighbouringAnyLiveCells()
 		{
 			var adjacentDeadCell1 = new FakeCell();
