@@ -8,7 +8,7 @@ namespace gol
 		[Test]
 		public void GivenAUniverseWithNoLiveCells_WhenEvolved_TheUniverseContainsNoLiveCells()
 		{
-			var universeWithNoLiveCells = new FakeUniverse();
+			var universeWithNoLiveCells = new Universe(new ICell[0]);
 
 			var evolvedUniverse = EvolveUniverse(universeWithNoLiveCells);
 
@@ -21,7 +21,7 @@ namespace gol
 		public void GivenAUniverseWithOneLiveCellAndLessThanTwoLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new FakeUniverse(new[] { liveCell });
+			var initialUniverse = new Universe(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -34,7 +34,7 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new FakeUniverse(new[] { liveCell });
+			var initialUniverse = new Universe(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -50,7 +50,7 @@ namespace gol
 		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new FakeUniverse(new[] { liveCell });
+			var initialUniverse = new Universe(new[] { liveCell });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -61,14 +61,17 @@ namespace gol
 		public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
 		{
 			var deadCell = new FakeCell(liveNeighbourCount: 3);
-			var initialUniverse = new FakeUniverse(new ICell[0], new ICell[] { deadCell });
+			var liveCell1 = new FakeCell(deadCell);
+			var liveCell2 = new FakeCell(deadCell);
+			var liveCell3 = new FakeCell(deadCell);
+			var initialUniverse = new Universe(new[]{liveCell1, liveCell2, liveCell3});
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
 			Assert.That(evolvedUniverse.LiveCells, Has.Member(deadCell));
 		}
 
-		private static IUniverse EvolveUniverse(FakeUniverse initialUniverse)
+		private static IUniverse EvolveUniverse(IUniverse initialUniverse)
 		{
 			var game = new Game();
 			return game.Evolve(initialUniverse);

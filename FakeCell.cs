@@ -10,6 +10,7 @@ namespace gol
 		public FakeCell(int liveNeighbourCount = 0)
 		{
 			_liveNeighbourCount = liveNeighbourCount;
+			_adjacentCells = new ICell[0];
 		}
 
 		public FakeCell(params ICell[] adjacentCells)
