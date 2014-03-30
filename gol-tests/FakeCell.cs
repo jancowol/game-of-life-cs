@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using gol;
 
-namespace gol
+namespace gol_tests
 {
 	public class FakeCell : ICell
 	{

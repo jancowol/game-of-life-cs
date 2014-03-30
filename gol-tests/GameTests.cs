@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using gol;
 
-namespace gol
+namespace gol_tests
 {
 	[TestFixture]
 	public class GameTests

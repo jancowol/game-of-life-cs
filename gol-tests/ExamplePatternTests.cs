@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
+using gol;
 
-namespace gol
+namespace gol_tests
 {
 	[TestFixture]
 	public class ExamplePatternTests

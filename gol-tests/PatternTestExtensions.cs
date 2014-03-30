@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using gol;
 
-namespace gol
+namespace gol_tests
 {
 	public static class PatternTestExtensions
 	{
