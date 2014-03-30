@@ -16,7 +16,8 @@ namespace gol
 				Blinker().AtPosition(93, 10),
 				Blinker().AtPosition(20, 43),
 				Blinker().AtPosition(93, 43),
-				Glider().AtPosition(35, 10),
+				GliderSE().AtPosition(35, 10),
+				WeirdGrowingThingy().AtPosition(50, 40),
 				Pulsar().AtPosition(50, 20));
 
 			var game = new Game();
@@ -42,12 +43,20 @@ namespace gol
 					new Cell(cell.X + x, cell.Y + y)).ToList();
 		}
 
-		private static IEnumerable<ICell> Glider()
+		private static IEnumerable<ICell> GliderSE()
 		{
 			return Cells(
 				"X X",
 				" XX",
 				" X ");
+		}
+
+		private static IEnumerable<ICell> GliderNE()
+		{
+			return Cells(
+				"XX ",
+				" XX",
+				"X  ");
 		}
 
 		private static IEnumerable<ICell> Blinker()
@@ -74,6 +83,14 @@ namespace gol
 				"X    X X    X",
 				"             ",
 				"  XXX   XXX  ");
+		}
+
+		private static IEnumerable<ICell> WeirdGrowingThingy()
+		{
+			return Cells(
+				"XX ",
+				" XX",
+				"XX ");
 		}
 
 		private static void RenderUniverse(IUniverse universe)
