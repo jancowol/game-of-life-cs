@@ -21,11 +21,12 @@ namespace gol
 		[Test]
 		public void Block()
 		{
-			var block = new[] { new Cell(1, 1), new Cell(2, 1), new Cell(1, 2), new Cell(2, 2) };
-
-			var evolvedUniverse = PatternTestExtensions.Evolve(block);
-
-			Assert.That(evolvedUniverse.LiveCells, Is.EquivalentTo(new[] {new Cell(1, 1), new Cell(2, 1), new Cell(1, 2), new Cell(2, 2)}));
+			Cells(
+				"XX",
+				"XX")
+			.TransformsTo(
+				"XX",
+				"XX");
 		}
 
 		private static IEnumerable<ICell> Cells(params string[] pattern)
