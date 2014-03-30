@@ -43,6 +43,21 @@ namespace gol
 				" X");
 		}
 
+		[Test]
+		public void Beacon()
+		{
+			Verify(
+				"XX  ",
+				"XX  ",
+				"  XX",
+				"  XX")
+			.TransformsTo(
+				"XX  ",
+				"X   ",
+				"   X",
+				"  XX");
+		}
+
 		private static IEnumerable<ICell> Verify(params string[] pattern)
 		{
 			return PatternTestExtensions.Cells(pattern);
