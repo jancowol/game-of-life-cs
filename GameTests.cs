@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace gol
 {
@@ -33,8 +34,10 @@ namespace gol
 		[TestCase(3)]
 		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var liveNeighbours = CreateCells(liveNeighbourCount);
+			var liveCell = new FakeCell(liveNeighbours);
+			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
+			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -75,6 +78,12 @@ namespace gol
 		{
 			var game = new Game();
 			return game.Evolve(initialUniverse);
+		}
+
+		private static FakeCell[] CreateCells(int liveNeighbourCount)
+		{
+			return Enumerable.Range(1, liveNeighbourCount)
+							.Select(x => new FakeCell()).ToArray();
 		}
 	}
 }

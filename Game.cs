@@ -26,7 +26,8 @@ namespace gol
 			return universe.LiveCells
 				.Where(liveCell =>
 					{
-						var liveNeighbourCount = liveCell.NumberOfNeighboursIn(universe.LiveCells);
+						var neighbourCellPositions = liveCell.AdjacentCells();
+						var liveNeighbourCount = neighbourCellPositions.Intersect(universe.LiveCells).Count();
 						return liveNeighbourCount == 2 || liveNeighbourCount == 3;
 					});
 		}
