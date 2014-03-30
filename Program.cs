@@ -25,18 +25,18 @@ namespace gol
 
 		private static IEnumerable<ICell> Glider()
 		{
-			return new[]
-				{
-					new Cell(0, 0), new Cell(2, 0), new Cell(1, 1), new Cell(2, 1), new Cell(1, 2)
-				};
+			return Cells(
+				"X X",
+				" XX",
+				" X ");
 		}
 
 		private static IEnumerable<ICell> Blinker()
 		{
-			return new[]
-				{
-					new Cell(0, 1), new Cell(1, 1), new Cell(2, 1)
-				};
+			return Cells(
+				" X ",
+				" X ",
+				" X ");
 		}
 
 		private static void RenderUniverse(IUniverse universe)
@@ -46,6 +46,17 @@ namespace gol
 			{
 				Console.SetCursorPosition(cell.X, cell.Y);
 				Console.Write("X");
+			}
+		}
+
+		public static IEnumerable<ICell> Cells(params string[] pattern)
+		{
+			for (int y = 0; y < pattern.Length; y++)
+			{
+				var line = pattern[y];
+				for (int x = 0; x < line.Length; x++)
+					if (line[x] == 'X')
+						yield return new Cell(x, y);
 			}
 		}
 	}
