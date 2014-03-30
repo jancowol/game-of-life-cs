@@ -29,6 +29,19 @@ namespace gol
 				"XX");
 		}
 
+		[Test]
+		public void Toad()
+		{
+			Cells(
+				"    ",
+				" XXX",
+				"XXX")
+			.TransformsTo(
+				"  X",
+				"X  X",
+				"X  X",
+				" X");
+		}
 		private static IEnumerable<ICell> Cells(params string[] pattern)
 		{
 			return PatternTestExtensions.Cells(pattern);
