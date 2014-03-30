@@ -9,7 +9,7 @@ namespace gol
 		[Test]
 		public void Blinker()
 		{
-			Cells(
+			Verify(
 				"   ",
 				"XXX")
 			.TransformsTo(
@@ -21,7 +21,7 @@ namespace gol
 		[Test]
 		public void Block()
 		{
-			Cells(
+			Verify(
 				"XX",
 				"XX")
 			.TransformsTo(
@@ -32,7 +32,7 @@ namespace gol
 		[Test]
 		public void Toad()
 		{
-			Cells(
+			Verify(
 				"    ",
 				" XXX",
 				"XXX")
@@ -42,7 +42,8 @@ namespace gol
 				"X  X",
 				" X");
 		}
-		private static IEnumerable<ICell> Cells(params string[] pattern)
+
+		private static IEnumerable<ICell> Verify(params string[] pattern)
 		{
 			return PatternTestExtensions.Cells(pattern);
 		}
