@@ -13,11 +13,6 @@ namespace gol
 			_y = y;
 		}
 
-		public int NumberOfNeighboursIn(IEnumerable<ICell> cells)
-		{
-			throw new System.NotImplementedException();
-		}
-
 		public IEnumerable<ICell> AdjacentCells()
 		{
 			return new[]

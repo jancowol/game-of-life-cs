@@ -24,11 +24,6 @@ namespace gol
 			set { _adjacentCells = value; }
 		}
 
-		public int NumberOfNeighboursIn(IEnumerable<ICell> cells)
-		{
-			return _liveNeighbourCount;
-		}
-
 		public IEnumerable<ICell> AdjacentCells()
 		{
 			return _adjacentCells;
