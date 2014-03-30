@@ -21,8 +21,10 @@ namespace gol
 		[TestCase(1)]
 		public void GivenAUniverseWithOneLiveCellAndLessThanTwoLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var liveNeighbours = CreateCells(liveNeighbourCount);
+			var liveCell = new FakeCell(liveNeighbours);
+			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
+			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -52,8 +54,10 @@ namespace gol
 		[TestCase(8)]
 		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
-			var liveCell = new FakeCell(liveNeighbourCount);
-			var initialUniverse = new Universe(new[] { liveCell });
+			var liveNeighbours = CreateCells(liveNeighbourCount);
+			var liveCell = new FakeCell(liveNeighbours);
+			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
+			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
@@ -63,11 +67,12 @@ namespace gol
 		[Test]
 		public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
 		{
-			var deadCell = new FakeCell(liveNeighbourCount: 3);
+			var deadCell = new FakeCell();
 			var liveCell1 = new FakeCell(deadCell);
 			var liveCell2 = new FakeCell(deadCell);
 			var liveCell3 = new FakeCell(deadCell);
-			var initialUniverse = new Universe(new[]{liveCell1, liveCell2, liveCell3});
+			deadCell.Neighbours = new[] { liveCell1, liveCell2, liveCell3 };
+			var initialUniverse = new Universe(new[] { liveCell1, liveCell2, liveCell3 });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 

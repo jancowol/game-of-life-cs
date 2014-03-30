@@ -4,7 +4,7 @@ namespace gol
 {
 	public class FakeCell : ICell
 	{
-		private readonly ICell[] _adjacentCells;
+		private ICell[] _adjacentCells;
 		private readonly int _liveNeighbourCount;
 
 		public FakeCell(int liveNeighbourCount = 0)
@@ -16,6 +16,12 @@ namespace gol
 		public FakeCell(params ICell[] adjacentCells)
 		{
 			_adjacentCells = adjacentCells;
+		}
+
+		public ICell[] Neighbours
+		{
+			get { return _adjacentCells; }
+			set { _adjacentCells = value; }
 		}
 
 		public int NumberOfNeighboursIn(IEnumerable<ICell> cells)
