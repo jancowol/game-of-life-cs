@@ -14,10 +14,8 @@ namespace gol
 			var universe = SeedUniverse(
 				Blinker().AtPosition(20, 10),
 				Blinker().AtPosition(93, 10),
-				Blinker().AtPosition(20, 43),
-				Blinker().AtPosition(93, 43),
 				GliderSE().AtPosition(35, 10),
-				WeirdGrowingThingy().AtPosition(50, 40),
+				WeirdGrowingThingy().AtPosition(50, 50),
 				Pulsar().AtPosition(50, 20));
 
 			var game = new Game();
@@ -88,9 +86,9 @@ namespace gol
 		private static IEnumerable<ICellLocation> WeirdGrowingThingy()
 		{
 			return Cells(
-				"XX ",
-				" XX",
-				"XX ");
+				"X X",
+				"XXX",
+				" X ");
 		}
 
 		private static void RenderUniverse(IUniverse universe)
