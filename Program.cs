@@ -89,7 +89,7 @@ namespace gol
 			{
 				var line = pattern[y];
 				for (int x = 0; x < line.Length; x++)
-					if (line[x] == 'X')
+					if (line[x] != ' ')
 						yield return new Cell(x, y);
 			}
 		}
