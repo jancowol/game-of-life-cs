@@ -10,11 +10,11 @@ namespace gol_tests
 		[Test]
 		public void GivenAUniverseWithNoLiveCells_WhenEvolved_TheUniverseContainsNoLiveCells()
 		{
-			var universeWithNoLiveCells = new Universe(new ICell[0]);
+			var universeWithNoLiveCells = new Universe(new ICellLocation[0]);
 
 			var evolvedUniverse = EvolveUniverse(universeWithNoLiveCells);
 
-			Assert.That(evolvedUniverse.LiveCells, Is.Empty);
+			Assert.That(evolvedUniverse.LiveCellLocations, Is.Empty);
 		}
 
 		[Test]
@@ -23,13 +23,13 @@ namespace gol_tests
 		public void GivenAUniverseWithOneLiveCellAndLessThanTwoLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveNeighbours = CreateCells(liveNeighbourCount);
-			var liveCell = new FakeCell(liveNeighbours);
+			var liveCell = new FakeCellLocation(liveNeighbours);
 			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
 			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
-			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
+			Assert.That(evolvedUniverse.LiveCellLocations, Has.No.Member(liveCell));
 		}
 
 		[Test]
@@ -38,13 +38,13 @@ namespace gol_tests
 		public void GivenAUniverseWithALiveCellWithBetweenTwoAndThreeLiveNeighbours_WhenEvolved_TheCellIsStillAlive(int liveNeighbourCount)
 		{
 			var liveNeighbours = CreateCells(liveNeighbourCount);
-			var liveCell = new FakeCell(liveNeighbours);
+			var liveCell = new FakeCellLocation(liveNeighbours);
 			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
 			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
-			Assert.That(evolvedUniverse.LiveCells, Contains.Item(liveCell));
+			Assert.That(evolvedUniverse.LiveCellLocations, Contains.Item(liveCell));
 		}
 
 		[Test]
@@ -56,28 +56,28 @@ namespace gol_tests
 		public void GivenAUniverseWithALiveCellWithMoreThanThreeLiveNeighbours_WhenEvolved_TheCellDies(int liveNeighbourCount)
 		{
 			var liveNeighbours = CreateCells(liveNeighbourCount);
-			var liveCell = new FakeCell(liveNeighbours);
+			var liveCell = new FakeCellLocation(liveNeighbours);
 			var allLiveCells = liveNeighbours.Concat(new[] { liveCell });
 			var initialUniverse = new Universe(allLiveCells);
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
-			Assert.That(evolvedUniverse.LiveCells, Has.No.Member(liveCell));
+			Assert.That(evolvedUniverse.LiveCellLocations, Has.No.Member(liveCell));
 		}
 
 		[Test]
 		public void GivenAUniverseWithADeadCellWithThreeLiveNeighbours_WhenEvolved_TheCellComesAlive()
 		{
-			var deadCell = new FakeCell();
-			var liveCell1 = new FakeCell(deadCell);
-			var liveCell2 = new FakeCell(deadCell);
-			var liveCell3 = new FakeCell(deadCell);
+			var deadCell = new FakeCellLocation();
+			var liveCell1 = new FakeCellLocation(deadCell);
+			var liveCell2 = new FakeCellLocation(deadCell);
+			var liveCell3 = new FakeCellLocation(deadCell);
 			deadCell.SetFakeNeighbours(new[] { liveCell1, liveCell2, liveCell3 });
 			var initialUniverse = new Universe(new[] { liveCell1, liveCell2, liveCell3 });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);
 
-			Assert.That(evolvedUniverse.LiveCells, Has.Member(deadCell));
+			Assert.That(evolvedUniverse.LiveCellLocations, Has.Member(deadCell));
 		}
 
 		private static IUniverse EvolveUniverse(IUniverse initialUniverse)
@@ -86,10 +86,10 @@ namespace gol_tests
 			return game.Evolve(initialUniverse);
 		}
 
-		private static FakeCell[] CreateCells(int liveNeighbourCount)
+		private static FakeCellLocation[] CreateCells(int liveNeighbourCount)
 		{
 			return Enumerable.Range(1, liveNeighbourCount)
-							.Select(x => new FakeCell()).ToArray();
+							.Select(x => new FakeCellLocation()).ToArray();
 		}
 	}
 }

@@ -7,7 +7,7 @@ namespace gol
 	{
 		public IUniverse Evolve(IUniverse universe)
 		{
-			var liveCells = new List<ICell>();
+			var liveCells = new List<ICellLocation>();
 
 			liveCells.AddRange(LiveCellsWithTwoOrThreeLiveNeighbours(universe));
 			liveCells.AddRange(DeadCellsWithThreeLiveNeighbours(universe));
@@ -15,15 +15,15 @@ namespace gol
 			return new Universe(liveCells);
 		}
 
-		private static IEnumerable<ICell> DeadCellsWithThreeLiveNeighbours(IUniverse universe)
+		private static IEnumerable<ICellLocation> DeadCellsWithThreeLiveNeighbours(IUniverse universe)
 		{
-			return universe.DeadCells
+			return universe.DeadCellLocations
 				.Where(deadCell => universe.CellLiveNeighbourCount(deadCell) == 3);
 		}
 
-		private static IEnumerable<ICell> LiveCellsWithTwoOrThreeLiveNeighbours(IUniverse universe)
+		private static IEnumerable<ICellLocation> LiveCellsWithTwoOrThreeLiveNeighbours(IUniverse universe)
 		{
-			return universe.LiveCells
+			return universe.LiveCellLocations
 				.Where(liveCell =>
 					{
 						var liveNeighbourCount = universe.CellLiveNeighbourCount(liveCell);

@@ -30,20 +30,20 @@ namespace gol
 			}
 		}
 
-		private static IUniverse SeedUniverse(params IEnumerable<ICell>[] patterns)
+		private static IUniverse SeedUniverse(params IEnumerable<ICellLocation>[] patterns)
 		{
 			return new Universe(patterns.SelectMany(p => p));
 		}
 
-		private static IEnumerable<ICell> AtPosition(this IEnumerable<ICell> pattern, int x, int y)
+		private static IEnumerable<ICellLocation> AtPosition(this IEnumerable<ICellLocation> pattern, int x, int y)
 		{
 			return pattern
-				.Cast<Cell>()
+				.Cast<XYCellLocation>()
 				.Select(cell =>
-					new Cell(cell.X + x, cell.Y + y)).ToList();
+					new XYCellLocation(cell.X + x, cell.Y + y)).ToList();
 		}
 
-		private static IEnumerable<ICell> GliderSE()
+		private static IEnumerable<ICellLocation> GliderSE()
 		{
 			return Cells(
 				"X X",
@@ -51,7 +51,7 @@ namespace gol
 				" X ");
 		}
 
-		private static IEnumerable<ICell> GliderNE()
+		private static IEnumerable<ICellLocation> GliderNE()
 		{
 			return Cells(
 				"XX ",
@@ -59,7 +59,7 @@ namespace gol
 				"X  ");
 		}
 
-		private static IEnumerable<ICell> Blinker()
+		private static IEnumerable<ICellLocation> Blinker()
 		{
 			return Cells(
 				" X ",
@@ -67,7 +67,7 @@ namespace gol
 				" X ");
 		}
 
-		private static IEnumerable<ICell> Pulsar()
+		private static IEnumerable<ICellLocation> Pulsar()
 		{
 			return Cells(
 				"  XXX   XXX  ",
@@ -85,7 +85,7 @@ namespace gol
 				"  XXX   XXX  ");
 		}
 
-		private static IEnumerable<ICell> WeirdGrowingThingy()
+		private static IEnumerable<ICellLocation> WeirdGrowingThingy()
 		{
 			return Cells(
 				"XX ",
@@ -96,21 +96,21 @@ namespace gol
 		private static void RenderUniverse(IUniverse universe)
 		{
 			Console.Clear();
-			foreach (var cell in universe.LiveCells.Cast<Cell>())
+			foreach (var cell in universe.LiveCellLocations.Cast<XYCellLocation>())
 			{
 				Console.SetCursorPosition(cell.X, cell.Y);
 				Console.Write("O");
 			}
 		}
 
-		public static IEnumerable<ICell> Cells(params string[] pattern)
+		public static IEnumerable<ICellLocation> Cells(params string[] pattern)
 		{
 			for (int y = 0; y < pattern.Length; y++)
 			{
 				var line = pattern[y];
 				for (int x = 0; x < line.Length; x++)
 					if (line[x] != ' ')
-						yield return new Cell(x, y);
+						yield return new XYCellLocation(x, y);
 			}
 		}
 	}

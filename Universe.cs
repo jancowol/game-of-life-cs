@@ -5,29 +5,29 @@ namespace gol
 {
 	public class Universe : IUniverse
 	{
-		public Universe(IEnumerable<ICell> liveCells)
+		public Universe(IEnumerable<ICellLocation> liveCellPositions)
 		{
-			LiveCells = liveCells;
+			LiveCellLocations = liveCellPositions;
 		}
 
-		public IEnumerable<ICell> LiveCells { get; private set; }
+		public IEnumerable<ICellLocation> LiveCellLocations { get; private set; }
 
-		public IEnumerable<ICell> DeadCells
+		public IEnumerable<ICellLocation> DeadCellLocations
 		{
 			get
 			{
-				return LiveCells
+				return LiveCellLocations
 					.SelectMany(liveCell => liveCell.Neighbours())
-					.Except(LiveCells)
+					.Except(LiveCellLocations)
 					.Distinct();
 			}
 		}
 
-		public int CellLiveNeighbourCount(ICell cell)
+		public int CellLiveNeighbourCount(ICellLocation cellLocation)
 		{
-			return cell
+			return cellLocation
 				.Neighbours()
-				.Intersect(LiveCells)
+				.Intersect(LiveCellLocations)
 				.Count();
 		}
 	}

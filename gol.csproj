@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell.cs" />
+    <Compile Include="XyCellLocation.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="ICell.cs" />
+    <Compile Include="ICellLocation.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

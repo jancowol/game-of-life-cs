@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CellTests.cs" />
+    <Compile Include="XYCellPositionTests.cs" />
     <Compile Include="ExamplePatternTests.cs" />
-    <Compile Include="FakeCell.cs" />
+    <Compile Include="FakeCellLocation.cs" />
     <Compile Include="GameTests.cs" />
     <Compile Include="PatternTestExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

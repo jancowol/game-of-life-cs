@@ -59,7 +59,7 @@ namespace gol_tests
 				"  XX");
 		}
 
-		private static IEnumerable<ICell> Verify(params string[] pattern)
+		private static IEnumerable<ICellLocation> Verify(params string[] pattern)
 		{
 			return PatternTestExtensions.Cells(pattern);
 		}

@@ -4,8 +4,8 @@ namespace gol
 {
 	public interface IUniverse
 	{
-		IEnumerable<ICell> LiveCells { get; }
-		IEnumerable<ICell> DeadCells { get; }
-		int CellLiveNeighbourCount(ICell cell);
+		IEnumerable<ICellLocation> LiveCellLocations { get; }
+		IEnumerable<ICellLocation> DeadCellLocations { get; }
+		int CellLiveNeighbourCount(ICellLocation cellLocation);
 	}
 }

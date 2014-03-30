@@ -2,28 +2,28 @@
 
 namespace gol
 {
-	public class Cell : ICell
+	public class XYCellLocation : ICellLocation
 	{
 		public int X { get; private set; }
 		public int Y { get; private set; }
 
-		public Cell(int x, int y)
+		public XYCellLocation(int x, int y)
 		{
 			X = x;
 			Y = y;
 		}
 
-		public IEnumerable<ICell> Neighbours()
+		public IEnumerable<ICellLocation> Neighbours()
 		{
 			return new[]
 				{
-					new Cell(X - 1, Y - 1), new Cell(X, Y - 1), new Cell(X + 1, Y - 1),
-					new Cell(X - 1, Y), new Cell(X + 1, Y),
-					new Cell(X - 1, Y + 1), new Cell(X, Y + 1), new Cell(X + 1, Y + 1)
+					new XYCellLocation(X - 1, Y - 1), new XYCellLocation(X, Y - 1), new XYCellLocation(X + 1, Y - 1),
+					new XYCellLocation(X - 1, Y),									new XYCellLocation(X + 1, Y),
+					new XYCellLocation(X - 1, Y + 1), new XYCellLocation(X, Y + 1), new XYCellLocation(X + 1, Y + 1)
 				};
 		}
 
-		protected bool Equals(Cell other)
+		protected bool Equals(XYCellLocation other)
 		{
 			return X == other.X && Y == other.Y;
 		}
@@ -33,7 +33,7 @@ namespace gol
 			if (ReferenceEquals(null, obj)) return false;
 			if (ReferenceEquals(this, obj)) return true;
 			if (obj.GetType() != this.GetType()) return false;
-			return Equals((Cell) obj);
+			return Equals((XYCellLocation) obj);
 		}
 
 		public override int GetHashCode()
