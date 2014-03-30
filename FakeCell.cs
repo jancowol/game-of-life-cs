@@ -4,29 +4,25 @@ namespace gol
 {
 	public class FakeCell : ICell
 	{
-		private ICell[] _adjacentCells;
-		private readonly int _liveNeighbourCount;
+		private ICell[] _fakeNeighbours = new ICell[0];
 
-		public FakeCell(int liveNeighbourCount = 0)
+		public FakeCell()
 		{
-			_liveNeighbourCount = liveNeighbourCount;
-			_adjacentCells = new ICell[0];
 		}
 
-		public FakeCell(params ICell[] adjacentCells)
+		public FakeCell(params ICell[] fakeNeighbours)
 		{
-			_adjacentCells = adjacentCells;
+			_fakeNeighbours = fakeNeighbours;
 		}
 
-		public ICell[] Neighbours
+		public void SetFakeNeighbours(ICell[] value)
 		{
-			get { return _adjacentCells; }
-			set { _adjacentCells = value; }
+			_fakeNeighbours = value;
 		}
 
-		public IEnumerable<ICell> AdjacentCells()
+		public IEnumerable<ICell> Neighbours()
 		{
-			return _adjacentCells;
+			return _fakeNeighbours;
 		}
 	}
 }

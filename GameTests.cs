@@ -71,7 +71,7 @@ namespace gol
 			var liveCell1 = new FakeCell(deadCell);
 			var liveCell2 = new FakeCell(deadCell);
 			var liveCell3 = new FakeCell(deadCell);
-			deadCell.Neighbours = new[] { liveCell1, liveCell2, liveCell3 };
+			deadCell.SetFakeNeighbours(new[] { liveCell1, liveCell2, liveCell3 });
 			var initialUniverse = new Universe(new[] { liveCell1, liveCell2, liveCell3 });
 
 			var evolvedUniverse = EvolveUniverse(initialUniverse);

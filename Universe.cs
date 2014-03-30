@@ -17,7 +17,7 @@ namespace gol
 			get
 			{
 				return LiveCells
-					.SelectMany(liveCell => liveCell.AdjacentCells())
+					.SelectMany(liveCell => liveCell.Neighbours())
 					.Except(LiveCells)
 					.Distinct();
 			}
@@ -26,7 +26,7 @@ namespace gol
 		public int CellLiveNeighbourCount(ICell cell)
 		{
 			return cell
-				.AdjacentCells()
+				.Neighbours()
 				.Intersect(LiveCells)
 				.Count();
 		}

@@ -36,7 +36,7 @@ namespace gol
 		[Test]
 		public void TheSetOfDeadCellsCannotContainLiveCells()
 		{
-			var liveCell1 = new FakeCell(adjacentCells: new ICell[0]);
+			var liveCell1 = new FakeCell(fakeNeighbours: new ICell[0]);
 			var liveCell2 = new FakeCell(liveCell1);
 			var universe = new Universe(new[] { liveCell1, liveCell2 });
 

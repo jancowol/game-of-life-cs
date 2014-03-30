@@ -17,7 +17,7 @@ namespace gol
 				};
 
 			Assert.That(
-				cell.AdjacentCells(),
+				cell.Neighbours(),
 				Is.EquivalentTo(expectedNeighbours));
 		}
 	}

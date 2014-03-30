@@ -4,6 +4,6 @@ namespace gol
 {
 	public interface ICell
 	{
-		IEnumerable<ICell> AdjacentCells();
+		IEnumerable<ICell> Neighbours();
 	}
 }

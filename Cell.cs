@@ -13,7 +13,7 @@ namespace gol
 			_y = y;
 		}
 
-		public IEnumerable<ICell> AdjacentCells()
+		public IEnumerable<ICell> Neighbours()
 		{
 			return new[]
 				{
