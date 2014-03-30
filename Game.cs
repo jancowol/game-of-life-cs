@@ -18,7 +18,7 @@ namespace gol
 		private static IEnumerable<ICell> DeadCellsWithThreeLiveNeighbours(IUniverse universe)
 		{
 			return universe.DeadCells
-				.Where(deadCell => CellLiveNeighbourCount(universe, deadCell) == 3);
+				.Where(deadCell => universe.CellLiveNeighbourCount(deadCell) == 3);
 		}
 
 		private static IEnumerable<ICell> LiveCellsWithTwoOrThreeLiveNeighbours(IUniverse universe)
@@ -26,17 +26,9 @@ namespace gol
 			return universe.LiveCells
 				.Where(liveCell =>
 					{
-						var liveNeighbourCount = CellLiveNeighbourCount(universe, liveCell);
+						var liveNeighbourCount = universe.CellLiveNeighbourCount(liveCell);
 						return liveNeighbourCount == 2 || liveNeighbourCount == 3;
 					});
-		}
-
-		private static int CellLiveNeighbourCount(IUniverse universe, ICell cell)
-		{
-			return cell
-				.AdjacentCells()
-				.Intersect(universe.LiveCells)
-				.Count();
 		}
 	}
 }

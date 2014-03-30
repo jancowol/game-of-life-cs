@@ -23,5 +23,12 @@ namespace gol
 			}
 		}
 
+		public int CellLiveNeighbourCount(ICell cell)
+		{
+			return cell
+				.AdjacentCells()
+				.Intersect(LiveCells)
+				.Count();
+		}
 	}
 }
