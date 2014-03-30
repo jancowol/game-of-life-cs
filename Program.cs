@@ -13,7 +13,8 @@ namespace gol
 
 			var universe = SeedUniverse(
 				Blinker().AtPosition(10, 10),
-				Glider().AtPosition(20, 20));
+				Glider().AtPosition(30, 10),
+				Pulsar().AtPosition(50, 20));
 
 			var game = new Game();
 
@@ -52,6 +53,24 @@ namespace gol
 				" X ",
 				" X ",
 				" X ");
+		}
+
+		private static IEnumerable<ICell> Pulsar()
+		{
+			return Cells(
+				"  XXX   XXX  ",
+				"             ",
+				"X    X X    X",
+				"X    X X    X",
+				"X    X X    X",
+				"  XXX   XXX  ",
+				"             ",
+				"  XXX   XXX  ",
+				"X    X X    X",
+				"X    X X    X",
+				"X    X X    X",
+				"             ",
+				"  XXX   XXX  ");
 		}
 
 		private static void RenderUniverse(IUniverse universe)
