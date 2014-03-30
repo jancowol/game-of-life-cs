@@ -11,9 +11,9 @@ namespace gol
 		{
 			Console.SetWindowSize(120, 80);
 
-			var glider = Glider().AtPosition(20, 20);
-
-			IUniverse universe = new Universe(glider);
+			var universe = SeedUniverse(
+				Blinker().AtPosition(10, 10),
+				Glider().AtPosition(20, 20));
 
 			var game = new Game();
 
@@ -21,8 +21,13 @@ namespace gol
 			{
 				RenderUniverse(universe);
 				universe = game.Evolve(universe);
-				Thread.Sleep(200);
+				Thread.Sleep(100);
 			}
+		}
+
+		private static IUniverse SeedUniverse(params IEnumerable<ICell>[] patterns)
+		{
+			return new Universe(patterns.SelectMany(p => p));
 		}
 
 		private static IEnumerable<ICell> AtPosition(this IEnumerable<ICell> pattern, int x, int y)
