@@ -12,8 +12,11 @@ namespace gol
 			Console.SetWindowSize(120, 80);
 
 			var universe = SeedUniverse(
-				Blinker().AtPosition(10, 10),
-				Glider().AtPosition(30, 10),
+				Blinker().AtPosition(20, 10),
+				Blinker().AtPosition(93, 10),
+				Blinker().AtPosition(20, 43),
+				Blinker().AtPosition(93, 43),
+				Glider().AtPosition(35, 10),
 				Pulsar().AtPosition(50, 20));
 
 			var game = new Game();
@@ -79,7 +82,7 @@ namespace gol
 			foreach (var cell in universe.LiveCells.Cast<Cell>())
 			{
 				Console.SetCursorPosition(cell.X, cell.Y);
-				Console.Write("X");
+				Console.Write("O");
 			}
 		}
 
