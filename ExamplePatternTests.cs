@@ -15,5 +15,16 @@ namespace gol
 
 			Assert.That(evolvedUniverse.LiveCells, Is.EquivalentTo(new[] { new Cell(1, 1), new Cell(1, 2), new Cell(1, 3) }));
 		}
+
+		[Test]
+		public void Block()
+		{
+			var game = new Game();
+			var block = new[] { new Cell(1, 1), new Cell(2, 1), new Cell(1, 2), new Cell(2, 2) };
+			var initialUniverse = new Universe(block);
+			var evolvedUniverse = game.Evolve(initialUniverse);
+
+			Assert.That(evolvedUniverse.LiveCells, Is.EquivalentTo(new[] {new Cell(1, 1), new Cell(2, 1), new Cell(1, 2), new Cell(2, 2)}));
+		}
 	}
 }
