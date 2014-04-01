@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gol", "gol.csproj", "{BF375534-ABA9-43E6-A1DA-301312544F75}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gol", "gol\gol.csproj", "{BF375534-ABA9-43E6-A1DA-301312544F75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gol-tests", "gol-tests\gol-tests.csproj", "{F3616703-50B7-4B75-8FE9-EE4803A646B4}"
 EndProject

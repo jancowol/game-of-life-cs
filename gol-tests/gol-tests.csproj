@@ -54,7 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gol.csproj">
+    <ProjectReference Include="..\gol\gol.csproj">
       <Project>{BF375534-ABA9-43E6-A1DA-301312544F75}</Project>
       <Name>gol</Name>
     </ProjectReference>

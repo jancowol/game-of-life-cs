@@ -23,7 +23,7 @@ namespace gol
 			while (true)
 			{
 				RenderUniverse(universe);
-				universe = game.Evolve(universe);
+				universe = game.Tick(universe);
 				Thread.Sleep(100);
 			}
 		}
