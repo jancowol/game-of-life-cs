@@ -83,7 +83,7 @@ namespace gol_tests
 		private static IUniverse EvolveUniverse(IUniverse initialUniverse)
 		{
 			var game = new Game();
-			return game.Evolve(initialUniverse);
+			return game.Tick(initialUniverse);
 		}
 
 		private static FakeCellLocation[] CreateCells(int liveNeighbourCount)

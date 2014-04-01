@@ -5,7 +5,7 @@ namespace gol
 {
 	public class Game
 	{
-		public IUniverse Evolve(IUniverse universe)
+		public IUniverse Tick(IUniverse universe)
 		{
 			var liveCells = new List<ICellLocation>();
 

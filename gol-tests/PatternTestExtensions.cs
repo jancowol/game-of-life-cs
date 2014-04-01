@@ -18,7 +18,7 @@ namespace gol_tests
 		{
 			var game = new Game();
 			var initialUniverse = new Universe(threeInARow.ToArray());
-			return game.Evolve(initialUniverse);
+			return game.Tick(initialUniverse);
 		}
 
 		public static IEnumerable<ICellLocation> Cells(params string[] pattern)
