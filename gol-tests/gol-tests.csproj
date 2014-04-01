@@ -47,7 +47,6 @@
     <Compile Include="FakeCellLocation.cs" />
     <Compile Include="GameTests.cs" />
     <Compile Include="PatternTestExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UniverseTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +57,9 @@
       <Project>{BF375534-ABA9-43E6-A1DA-301312544F75}</Project>
       <Name>gol</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
