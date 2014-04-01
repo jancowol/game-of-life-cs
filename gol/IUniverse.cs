@@ -7,5 +7,6 @@ namespace gol
 		IEnumerable<ICellLocation> LiveCellLocations { get; }
 		IEnumerable<ICellLocation> DeadCellLocations { get; }
 		int CellLiveNeighbourCount(ICellLocation cellLocation);
+		IUniverse Evolve();
 	}
 }
