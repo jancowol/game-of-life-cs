@@ -49,8 +49,8 @@ namespace gol
 
 		public int CountOfNeighboursIn(IEnumerable<ICellLocation> cellLocations)
 		{
-			return Neighbours()
-				.Intersect(cellLocations)
+			return cellLocations
+				.Intersect(Neighbours())
 				.Count();
 		}
 	}
