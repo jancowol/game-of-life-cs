@@ -4,6 +4,6 @@ namespace gol
 {
 	public interface ICellLocationFilter
 	{
-		IEnumerable<ICellLocation> Filter();
+		IEnumerable<ICellLocation> Filter(IUniverse universe);
 	}
 }

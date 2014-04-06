@@ -4,17 +4,10 @@ namespace gol
 {
 	public class LiveCellsWithTwoOrThreeLiveNeighboursFilter : ICellLocationFilter
 	{
-		private readonly IUniverse _universe;
-
-		public LiveCellsWithTwoOrThreeLiveNeighboursFilter(IUniverse universe)
+		public IEnumerable<ICellLocation> Filter(IUniverse universe)
 		{
-			_universe = universe;
-		}
-
-		public IEnumerable<ICellLocation> Filter()
-		{
-			return new CellsWithLiveNeighbourCountFilter(_universe.LiveCellLocations, 2, 3)
-				.Filter(_universe.LiveCellLocations);
+			return new CellsWithLiveNeighbourCountFilter(universe.LiveCellLocations, 2, 3)
+				.Filter(universe.LiveCellLocations);
 		}
 	}
 }
