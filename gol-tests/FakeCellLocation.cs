@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using gol;
 
 namespace gol_tests
@@ -24,6 +25,13 @@ namespace gol_tests
 		public IEnumerable<ICellLocation> Neighbours()
 		{
 			return _fakeNeighbours;
+		}
+
+		public int CountOfNeighboursIn(IEnumerable<ICellLocation> cellLocations)
+		{
+			return Neighbours()
+				.Intersect(cellLocations)
+				.Count();
 		}
 	}
 }

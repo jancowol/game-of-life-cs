@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace gol
 {
@@ -42,6 +43,13 @@ namespace gol
 			{
 				return (X*397) ^ Y;
 			}
+		}
+
+		public int CountOfNeighboursIn(IEnumerable<ICellLocation> cellLocations)
+		{
+			return Neighbours()
+				.Intersect(cellLocations)
+				.Count();
 		}
 	}
 }
