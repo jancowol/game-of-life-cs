@@ -12,28 +12,16 @@ namespace gol
 
 		public IUniverse Evolve()
 		{
-			var liveCells = new List<ICellLocation>();
+			var nextGenerationCells =
+				LiveCellsWithTwoOrThreeLiveNeighbours()
+				.Concat(DeadCellsWithThreeLiveNeighbours());
 
-			liveCells.AddRange(LiveCellsWithTwoOrThreeLiveNeighbours());
-			liveCells.AddRange(DeadCellsWithThreeLiveNeighbours());
-
-			return new Universe(liveCells);
+			return new Universe(nextGenerationCells.ToArray());
 		}
 
 		public IEnumerable<ICellLocation> LiveCellLocations { get; private set; }
 
-		public IEnumerable<ICellLocation> DeadCellLocations
-		{
-			get
-			{
-				return LiveCellLocations
-					.SelectMany(liveCell => liveCell.Neighbours())
-					.Except(LiveCellLocations)
-					.Distinct();
-			}
-		}
-
-		public int CellLiveNeighbourCount(ICellLocation cellLocation)
+		private int CellLiveNeighbourCount(ICellLocation cellLocation)
 		{
 			return cellLocation
 				.Neighbours()
@@ -41,9 +29,19 @@ namespace gol
 				.Count();
 		}
 
+		private IEnumerable<ICellLocation> FindDeadCellLocations()
+		{
+			return LiveCellLocations
+				.SelectMany(liveCell => liveCell.Neighbours())
+				.Except(LiveCellLocations)
+				.Distinct();
+		}
+
 		private IEnumerable<ICellLocation> DeadCellsWithThreeLiveNeighbours()
 		{
-			return DeadCellLocations.Where(deadCell => CellLiveNeighbourCount(deadCell) == 3);
+			return FindDeadCellLocations()
+				.Where(deadCell =>
+					CellLiveNeighbourCount(deadCell) == 3);
 		}
 
 		private IEnumerable<ICellLocation> LiveCellsWithTwoOrThreeLiveNeighbours()
