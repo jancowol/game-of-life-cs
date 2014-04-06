@@ -5,6 +5,7 @@ namespace gol
 {
 	public class XYCellLocation : ICellLocation
 	{
+		private readonly int _hashCode;
 		public int X { get; private set; }
 		public int Y { get; private set; }
 
@@ -12,6 +13,10 @@ namespace gol
 		{
 			X = x;
 			Y = y;
+			unchecked
+			{
+				_hashCode = (X*397) ^ Y;
+			}
 		}
 
 		public IEnumerable<ICellLocation> Neighbours()
@@ -39,10 +44,7 @@ namespace gol
 
 		public override int GetHashCode()
 		{
-			unchecked
-			{
-				return (X*397) ^ Y;
-			}
+			return _hashCode;
 		}
 
 		public int CountOfNeighboursIn(IEnumerable<ICellLocation> cellLocations)

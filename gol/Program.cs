@@ -20,12 +20,20 @@ namespace gol
 
 			var game = new Game();
 
-			while (true)
+			var count = 0;
+			var start = DateTime.Now;
+			while (count < 1000)
 			{
-				RenderUniverse(universe);
+				//RenderUniverse(universe);
 				universe = game.Tick(universe);
-				Thread.Sleep(100);
+				//Console.SetCursorPosition(1, 1);
+				//Console.Write(count);
+				count++;
+				//Thread.Sleep(100);
 			}
+			var end = DateTime.Now;
+			Console.Clear();
+			Console.WriteLine("Total time (ms): {0}", end.Subtract(start).TotalMilliseconds);
 		}
 
 		private static IUniverse SeedUniverse(params IEnumerable<ICellLocation>[] patterns)
