@@ -4,7 +4,8 @@ namespace gol
 {
 	public interface IUniverse
 	{
-		ICellLocation[] LiveCellLocations { get; }
 		IUniverse Evolve();
+		ICellLocation[] LiveCellLocations { get; }
+		ICellLocation[] DeadCellLocations { get; }
 	}
 }

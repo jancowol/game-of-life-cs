@@ -4,9 +4,9 @@ namespace gol
 {
 	public class DeadCellsWithThreeLiveNeighboursFilter : ICellLocationFilter
 	{
-		private readonly Universe _universe;
+		private readonly IUniverse _universe;
 
-		public DeadCellsWithThreeLiveNeighboursFilter(Universe universe)
+		public DeadCellsWithThreeLiveNeighboursFilter(IUniverse universe)
 		{
 			_universe = universe;
 		}
@@ -14,7 +14,7 @@ namespace gol
 		public IEnumerable<ICellLocation> Filter()
 		{
 			return new CellsWithLiveNeighbourCountFilter(_universe.LiveCellLocations, 3)
-				.Filter(_universe.FindDeadCellLocations());
+				.Filter(_universe.DeadCellLocations);
 		}
 	}
 }

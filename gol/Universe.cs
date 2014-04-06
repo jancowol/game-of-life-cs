@@ -6,6 +6,7 @@ namespace gol
 	public class Universe : IUniverse
 	{
 		private readonly ICellLocationFilter[] _evolutionFilters;
+		private ICellLocation[] _deadCellLocations;
 
 		public Universe(IEnumerable<ICellLocation> liveCellPositions)
 		{
@@ -30,12 +31,20 @@ namespace gol
 
 		public ICellLocation[] LiveCellLocations { get; private set; }
 
-		public IEnumerable<ICellLocation> FindDeadCellLocations()
+		public ICellLocation[] DeadCellLocations
 		{
-			return LiveCellLocations
-				.SelectMany(liveCell => liveCell.Neighbours())
-				.Except(LiveCellLocations)
-				.Distinct();
+			get
+			{
+				if (_deadCellLocations == null)
+					_deadCellLocations =
+						LiveCellLocations
+							.SelectMany(liveCell => liveCell.Neighbours())
+							.Except(LiveCellLocations)
+							.Distinct()
+							.ToArray();
+
+				return _deadCellLocations;
+			}
 		}
 	}
 }

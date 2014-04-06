@@ -4,9 +4,9 @@ namespace gol
 {
 	public class LiveCellsWithTwoOrThreeLiveNeighboursFilter : ICellLocationFilter
 	{
-		private readonly Universe _universe;
+		private readonly IUniverse _universe;
 
-		public LiveCellsWithTwoOrThreeLiveNeighboursFilter(Universe universe)
+		public LiveCellsWithTwoOrThreeLiveNeighboursFilter(IUniverse universe)
 		{
 			_universe = universe;
 		}
