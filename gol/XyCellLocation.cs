@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace gol
@@ -6,8 +7,23 @@ namespace gol
 	public class XYCellLocation : ICellLocation
 	{
 		private readonly int _hashCode;
+		private ICellLocation[] _neighbours;
 		public int X { get; private set; }
 		public int Y { get; private set; }
+
+		private static Dictionary<Tuple<int, int>, XYCellLocation> _locationCache = new Dictionary<Tuple<int, int>, XYCellLocation>();
+
+		private static XYCellLocation LocationAt(int x, int y)
+		{
+			XYCellLocation location;
+			var key = new Tuple<int, int>(x, y);
+			if (!_locationCache.TryGetValue(key, out location))
+			{
+				location = new XYCellLocation(x, y);
+				_locationCache.Add(key, location);
+			}
+			return location;
+		}
 
 		public XYCellLocation(int x, int y)
 		{
@@ -21,12 +37,17 @@ namespace gol
 
 		public IEnumerable<ICellLocation> Neighbours()
 		{
-			return new[]
-				{
-					new XYCellLocation(X - 1, Y - 1), new XYCellLocation(X, Y - 1), new XYCellLocation(X + 1, Y - 1),
-					new XYCellLocation(X - 1, Y),									new XYCellLocation(X + 1, Y),
-					new XYCellLocation(X - 1, Y + 1), new XYCellLocation(X, Y + 1), new XYCellLocation(X + 1, Y + 1)
-				};
+			if (_neighbours == null)
+			{
+				_neighbours = new[]
+					{
+						LocationAt(X - 1, Y - 1), LocationAt(X, Y - 1), LocationAt(X + 1, Y - 1),
+						LocationAt(X - 1, Y), LocationAt(X + 1, Y),
+						LocationAt(X - 1, Y + 1), LocationAt(X, Y + 1), LocationAt(X + 1, Y + 1)
+					};
+			}
+
+			return _neighbours;
 		}
 
 		protected bool Equals(XYCellLocation other)
