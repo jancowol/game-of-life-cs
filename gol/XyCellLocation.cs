@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace gol
 {
@@ -66,13 +65,6 @@ namespace gol
 		public override int GetHashCode()
 		{
 			return _hashCode;
-		}
-
-		public int CountOfNeighboursIn(IEnumerable<ICellLocation> cellLocations)
-		{
-			return cellLocations
-				.Intersect(Neighbours())
-				.Count();
 		}
 	}
 }
