@@ -17,10 +17,10 @@ namespace gol
 		public IEnumerable<ICellLocation> Filter(IEnumerable<ICellLocation> cellLocations)
 		{
 			return cellLocations
-				.Where(LiveNeighbourCountIs);
+				.Where(LiveNeighbourCountInCountFilters);
 		}
 
-		private bool LiveNeighbourCountIs(ICellLocation cellLocation)
+		private bool LiveNeighbourCountInCountFilters(ICellLocation cellLocation)
 		{
 			return _filterNeighbourCounts
 				.Contains(cellLocation.CountOfNeighboursIn(_liveCellLocations));
